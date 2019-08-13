@@ -11,7 +11,7 @@ void SplitString(const std::string& s, std::vector<std::string>& v, const std::s
 int ModifyCopyright2(string path);
 string charToStr(char * contentChar);
 void modifyContentInFile(char *fileName,int lineNum,char *content);
-
+#define ROW 20
 int main(int argc,char* argv[])
 {
 	//string filename = "/home/weilon01/Marathon/test.txt";
@@ -46,7 +46,7 @@ int ModifyCopyright2(string path)
 	string line;
 	string str;
 	read_line.open(path,ios::binary);
-	for(int i = 0;i < 20;++i)
+	for(int i = 0;i < ROW;++i)
 	{
 		if(getline(read_line,line))
 		  str = str + line + '\n';
@@ -58,14 +58,14 @@ int ModifyCopyright2(string path)
 	string c = "\n";
 	SplitString(str,lines,c);
 	int modifyline = 0;//the line need to change
-	for(;modifyline < 20;++modifyline)
+	for(;modifyline < ROW;++modifyline)
 	{
 		if(lines[modifyline].find("COPYRIGHT") != lines[modifyline].npos)
 		{
 			break;
 		}
 	}
-	if(modifyline == 20)
+	if(modifyline == ROW)
 	{
 		cout<<"Do not need to modify"<<endl;
 		return 0;
